@@ -14,7 +14,7 @@ Run `npm run start-client`
 
 ### Development location
 
-Open [http://localhost:4200]
+Open [localhost:4200](http://localhost:4200)
 
 ### Production
 
