@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  position: relative;
+  padding: 1rem;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  @media only screen and (min-width: 560px) {
+    &:hover {
+      top: -2px;
+      right: -2px;
+      box-shadow: 0 0 2px white;
+      transition: top 500ms ease-in-out;
+    }
+  }
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.preview-info {
+  display: flex;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+  justify-content: space-between;
+
+  .preview-info__title {
+    padding-right: 0.5rem;
+    font-weight: bold;
+  }
+}
+
+.airing {
+  background: white;
+  color: #444;
+  position: absolute;
+  top: 260px;
+  display: block;
+  padding: 0.25rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  box-shadow: 0 0 1px #444;
+}

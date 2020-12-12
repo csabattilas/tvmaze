@@ -1,0 +1,34 @@
+<h2> Dashboard settings</h2>
+<form [formGroup]="form">
+  <div>
+    <label id="weeks">Weeks</label>
+    <mat-radio-group
+      formControlName="week"
+      aria-labelledby="weeks"
+    >
+      <mat-radio-button value="current">Current week</mat-radio-button>
+      <mat-radio-button value="next">Next week</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div>
+    <label id="countries">Country</label>
+    <mat-radio-group
+      formControlName="countryCode"
+      aria-labelledby="weeks"
+    >
+      <mat-radio-button value="US">United States</mat-radio-button>
+      <mat-radio-button value="NL">Netherlands</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div>
+    <label id="popularities">Popularity</label>
+    <mat-radio-group
+      formControlName="rating"
+      aria-labelledby="popularities"
+    >
+      <mat-radio-button value="7">Very popular</mat-radio-button>
+      <mat-radio-button value="6">Popular</mat-radio-button>
+      <mat-radio-button value="0">All</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</form>

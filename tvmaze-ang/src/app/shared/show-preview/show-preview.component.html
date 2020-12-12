@@ -1,0 +1,9 @@
+<img [src]="show?.image?.medium">
+<div class="preview-info">
+  <span class="preview-info__title">{{show?.name}}</span>
+  <span *ngIf="show?.rating">{{show?.rating}}</span>
+  <span
+    *ngIf="airing"
+    class="airing"
+  >{{airing}}</span>
+</div>

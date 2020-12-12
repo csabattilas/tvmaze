@@ -1,0 +1,11 @@
+{
+  "name": "tvmazing",
+  "version": "1.0.0",
+  "description": "Small web-app using tvamze api ",
+  "scripts": {
+    "start-server": "cd apollo-server && npm start",
+    "start-client": "cd tvmaze-ang && npm start"
+  },
+  "author": "csaba szabo",
+  "license": "ISC"
+}

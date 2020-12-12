@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/cdk/overlay-prebuilt";
+@import "~@angular/cdk/a11y";
+@import '~@angular/material/theming';
+
+$theme: (
+  primary: mat-palette($mat-grey),
+  accent: mat-palette($mat-orange),
+  warn: mat-palette($mat-red),
+  is-dark: true,
+  foreground: $mat-dark-theme-foreground,
+  background: $mat-dark-theme-background,
+);
+
+html, body {
+  font-family: Inter;
+  background-color: #222;
+  color: white
+}
+
+.show-dialog {
+  .mat-dialog-container {
+    background: #333;
+    border-radius: 1rem;
+    padding: 2rem;
+    position: relative;
+  }
+
+  @media only screen and (max-width: 560px) { // todo not the best!!, maybe set this programmatically with material utils.
+    width: 98vw !important;
+    max-width: unset !important;
+  }
+}
+
+.cdk-overlay-backdrop {
+  background: rgba(0,0,0,.8);
+}
+
+.cdk-overlay-container {
+  .settings-menu-panel {
+    max-width: unset;
+    padding: 1rem;
+    background-color: #333;
+  }
+}
+
+@include cdk-a11y();
+@include mat-core-theme($theme);
+@include mat-radio-theme($theme);
+@include mat-button-theme($theme);
+

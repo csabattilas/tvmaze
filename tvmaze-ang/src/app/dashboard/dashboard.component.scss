@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  padding: 0 1rem;
+  margin-top: 5rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.shows-scroller {
+  display: flex;
+  width: 100%;
+  overflow: auto;
+  padding: 0.5rem 0;
+}
+
+.shows-scroller__item {
+  width: 230px;
+}
+
+h1 {
+  span {
+    text-transform: capitalize;
+  }
+}

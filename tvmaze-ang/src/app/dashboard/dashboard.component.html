@@ -1,0 +1,23 @@
+<h1><span>{{popularity}}</span> shows for the {{week}} week in {{country}}</h1>
+<div *ngIf="scheduleByGenres$ | async as scheduleByGenres">
+  <ul *ngIf="scheduleByGenres.length; else noShows">
+    <li *ngFor="let showByGenre of scheduleByGenres">
+      <h2>{{showByGenre.genre}}</h2>
+      <ul class="shows-scroller">
+        <li *ngFor="let show of showByGenre.shows">
+          <app-show-preview
+            *ngIf="show.image"
+            (click)="showDetails(show.id)"
+            [show]="show"
+            class="shows-scroller__item"
+          >
+          </app-show-preview>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noShows>
+  No available shows!
+</ng-template>

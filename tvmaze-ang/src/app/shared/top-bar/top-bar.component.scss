@@ -1,0 +1,38 @@
+@import '~@angular/material/theming';
+
+a {
+  color: white;
+  padding: 0 0.5rem;
+
+  mat-icon {
+    padding: 0;
+  };
+
+  &.active {
+    color: mat-color(mat-palette($mat-orange));
+  }
+}
+
+mat-icon {
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+
+div {
+  width: 100%;
+  padding: 1rem;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background-color: #333;
+  box-shadow: 1px 0 0 #444;
+  top: 0;
+  z-index: 2;
+  left: 0;
+}
+
+h4 {
+  color: mat-color(mat-palette($mat-orange));
+  margin: 0;
+}

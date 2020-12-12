@@ -1,0 +1,65 @@
+<mat-dialog-content>
+  <div *ngIf="show$ | async as show ; else loading">
+    <h1>{{show.name}}</h1>
+    <div class="show-info-container">
+      <img [src]="show.image?.medium">
+      <div class="show-info-container__info">
+        <div
+          class="show-info-container__summary"
+          [innerHTML]="show.summary"
+        ></div>
+
+        <h2>Cast</h2>
+        <div *ngIf="show.cast && show.cast.length; else noCastInfo">
+          <span
+            *ngFor="let cast of show.cast"
+            class="show-info-container__cast"
+          >
+            {{cast.name}}
+          </span>
+        </div>
+
+        <h2>Network</h2>
+        <div *ngIf="show.network && show.network.name; else noNetworkInfo">
+          <span>
+            {{show.network?.name}} <span *ngIf="show.network.country?.name">/ {{show.network.country?.name}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <h2>Upcoming episodes</h2>
+    <div *ngIf="show.episodes && show.episodes.length ; else noEpisodeInfo">
+
+      <div *ngFor="let episode of show.episodes" class="show-info-container__episode">
+        <div>
+          <span class="show-info-container__episode-title">{{episode?.name}}</span>
+          <span>Airdate: {{episode?.airdate}}, {{episode?.airtime}}</span>
+        </div>
+        <div
+          [innerHTML]="episode?.summary"
+          class="show-info-container__episode-summary"
+        >
+        </div>
+      </div>
+    </div>
+    <button mat-mini-fab mat-dialog-close color="accent">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-dialog-content>
+
+<ng-template #loading>
+  ...loading
+</ng-template>
+
+<ng-template #noEpisodeInfo>
+  No upcoming episode information
+</ng-template>
+
+<ng-template #noCastInfo>
+  No cast information
+</ng-template>
+
+<ng-template #noNetworkInfo>
+  No network information
+</ng-template>

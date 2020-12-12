@@ -1,0 +1,23 @@
+<div>
+  <h4>tvmazing</h4>
+  <nav>
+    <a [routerLink]="['search']" routerLinkActive="active">
+      <mat-icon>search</mat-icon>
+    </a>
+    <a [routerLink]="['dashboard']" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+    </a>
+
+    <mat-icon [matMenuTriggerFor]="settingsMenu">settings</mat-icon>
+
+  </nav>
+</div>
+<mat-icon>more_vert</mat-icon>
+
+<mat-menu
+    #settingsMenu="matMenu"
+    class="settings-menu-panel"
+>
+  <app-config></app-config>
+</mat-menu>
+

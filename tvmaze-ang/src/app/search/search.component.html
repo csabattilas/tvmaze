@@ -1,0 +1,29 @@
+<h1>Search shows in all countries by name</h1>
+
+<div
+  [formGroup]="form"
+  class="form-group"
+>
+  <input
+    formControlName="q"
+    placeholder="Type in search query"
+  >
+</div>
+<div *ngIf="result$ | async as result">
+  <div
+    *ngIf="result.length ; else noResult"
+    class="search-result"
+  >
+    <app-show-preview
+      *ngFor="let show of result"
+      class="search-result__item"
+      (click)="showDetails(show.id)"
+      [show]="show">
+      >
+    </app-show-preview>
+  </div>
+</div>
+
+<ng-template #noResult>
+  No result
+</ng-template>

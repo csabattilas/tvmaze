@@ -1,0 +1,23 @@
+form {
+  display: flex;
+
+  @media only screen and (max-width: 560px) {
+    flex-direction: column;
+  }
+}
+
+mat-radio-button {
+  display: block;
+  padding: 0.5rem;
+}
+
+div {
+  padding: 0.5rem;
+}
+
+label{
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
