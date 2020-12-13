@@ -10,7 +10,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {TopBarComponent} from './top-bar/top-bar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {RouterModule} from '@angular/router';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
@@ -29,11 +29,13 @@ import { LoadingComponent } from './loading/loading.component';
     MatRadioModule,
     MatIconModule,
     MatMenuModule,
+    FormsModule,
     RouterModule,
     ReactiveFormsModule,
   ],
   exports: [
     CommonModule,
+    ReactiveFormsModule,
     ShowComponent,
     ShowPreviewComponent,
     TopBarComponent,

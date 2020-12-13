@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   form: FormGroup;
   result$: Observable<ShowPreview[]> | undefined;
 
@@ -25,13 +25,11 @@ export class SearchComponent implements OnInit {
         q: fb.control('')
       }
     );
-  }
 
-  ngOnInit(): void {
     this.result$ = this.form?.get('q')?.valueChanges.pipe(
       filter((q: string) => q.length > 2),
       debounceTime(200),
-      switchMap((q: string) => this.searchService.shows(q)),
+      switchMap((q: string) => this.searchService.search(q)),
       map(({shows}) => shows.filter((item: ShowPreview) => !!item.image))
     );
   }

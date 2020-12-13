@@ -2,6 +2,11 @@
 
 Small angular application consuming tvmaze api through the apollo-client.
 
+Frameworks used:
+* apollo-client via `apollo-angular`;
+* graphql;
+* rxjs;
+
 ## Install
 
 Run `npm i`.

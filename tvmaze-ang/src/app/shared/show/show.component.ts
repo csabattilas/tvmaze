@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {ShowService} from './show.service';
 import {Show} from '../../types';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -8,7 +8,8 @@ import {map} from 'rxjs/operators';
 @Component({
   selector: 'app-show',
   templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+  styleUrls: ['./show.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowComponent implements OnInit {
   show$: Observable<Show> | undefined;
@@ -20,7 +21,6 @@ export class ShowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.id);
     this.show$ = this.showService.show(this.data.id)
       .pipe(
         map(({show}) => show)

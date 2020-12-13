@@ -1,11 +1,10 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import {DashboardComponent} from './dashboard.component';
 import {DashboardService} from './dashboard.service';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {ActivatedRoute} from '@angular/router';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {CommonModule} from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
 import {ApolloTestingModule} from 'apollo-angular/testing';
 

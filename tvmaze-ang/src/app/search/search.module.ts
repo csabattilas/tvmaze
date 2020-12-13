@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {SearchComponent} from './search.component';
 import {SearchService} from './search.service';
-import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
@@ -9,7 +8,6 @@ import {SharedModule} from '../shared/shared.module';
     SearchComponent
   ],
   imports: [
-    ReactiveFormsModule,
     SharedModule,
   ],
   providers: [

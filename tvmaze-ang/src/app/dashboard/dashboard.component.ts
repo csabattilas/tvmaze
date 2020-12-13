@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.scheduleByGenres$ = this.configService.setting$.pipe(
+    this.scheduleByGenres$ = this.configService.settings$.pipe(
       tap(() => {
         this.loading$.next(true);
       }),
@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
           this.loadingDialogRef = this.dialog.open(LoadingComponent, {
             width: '100%',
           });
-        } else if(this.loadingDialogRef) {
+        } else if (this.loadingDialogRef) {
           this.loadingDialogRef.close();
         }
       })

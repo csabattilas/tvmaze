@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TopBarComponent } from './top-bar.component';
-import {MatMenuModule} from '@angular/material/menu';
+import {TopBarComponent} from './top-bar.component';
+import {SharedModule} from '../shared.module';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('TopBarComponent', () => {
   let component: TopBarComponent;
@@ -9,10 +10,13 @@ describe('TopBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopBarComponent ],
-      imports: [MatMenuModule]
+      declarations: [TopBarComponent],
+      imports: [
+        SharedModule,
+        RouterTestingModule.withRoutes([]),
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

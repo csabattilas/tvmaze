@@ -6,12 +6,12 @@ import {Settings} from '../../types';
   providedIn: 'root'
 })
 export class ConfigService {
-  setting$ = new BehaviorSubject<Settings>({isNextWeek: false, countryCode: 'US', rating: 6});
+  settings$ = new BehaviorSubject<Settings>({isNextWeek: false, countryCode: 'US', rating: 6});
 
   constructor() {
   }
 
   updateSettings(newSettings: Settings): void {
-    this.setting$.next(newSettings);
+    this.settings$.next(newSettings);
   }
 }

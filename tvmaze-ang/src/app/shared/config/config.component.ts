@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ConfigService} from './config.service';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.scss']
 })
-export class ConfigComponent implements OnInit {
+export class ConfigComponent {
   form: FormGroup;
 
   constructor(
@@ -22,15 +23,13 @@ export class ConfigComponent implements OnInit {
     );
 
     // todo debounceTime?
-    this.form.valueChanges.subscribe(({week, countryCode, rating}) =>
-      this.configService.updateSettings({
-        isNextWeek: week === 'next',
-        countryCode,
-        rating: Number(rating)
-      })
-    );
-  }
-
-  ngOnInit(): void {
+    this.form.valueChanges.pipe(
+      tap(({week, countryCode, rating}) =>
+        this.configService.updateSettings({
+          isNextWeek: week === 'next',
+          countryCode,
+          rating: Number(rating)
+        }))
+    ).subscribe();
   }
 }

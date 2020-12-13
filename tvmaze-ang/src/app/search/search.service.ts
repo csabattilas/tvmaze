@@ -14,7 +14,7 @@ export class SearchService {
   ) {
   }
 
-  shows(q: string): Observable<SearchQuery> {
+  search(q: string): Observable<SearchQuery> {
     return this.apollo.watchQuery<SearchQuery>({
       query: gql`
           query($q: String!){
