@@ -21,6 +21,8 @@ Angular / Apollo / Graphql based web application using `TVmaze` to present TV sh
 * Add more countries to dashboard
 * Move apollo-server to typescript
 * Keep settings values even when on search. Possibly use session storage (?)
+* Better error handling with server communication failures
+* Address a11y issues
 
 ## Install
 
