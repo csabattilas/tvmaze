@@ -9,7 +9,7 @@ Angular / Apollo / Graphql based web application using `TVmaze` to present TV sh
     * by popularity rating
     * for current and next week
      
-* Search - searches shows across all networks in the world by name
+* Search - searches shows across all networks in the world by show details
 * small config menu to refine Dashboard
 * modals to present details about shows as summary, cast, or upcoming episodes information
 * dashboard also feature deep-linking with show details
