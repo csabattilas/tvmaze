@@ -4,7 +4,10 @@
   "description": "Small web-app using tvamze api ",
   "scripts": {
     "start-server": "cd apollo-server && npm start",
-    "start-client": "cd tvmaze-ang && npm start"
+    "start-client": "cd tvmaze-ang && npm start",
+    "install-server": "cd apollo-server && npm i",
+    "install-client": "cd tvmaze-ang && npm i",
+    "preinstall": "npm run install-server && npm run install-client"
   },
   "author": "csaba szabo",
   "license": "ISC"
