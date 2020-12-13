@@ -34,11 +34,13 @@ The used npm version is `6.13.4`.
 
 ## Run development
 
+Run client and server in separate terminal windows.
+
 ### Run middleware
 
 Run `npm run start-server`.
 
-### Run client
+### Run client 
 
 Run `npm run start-client`
 
