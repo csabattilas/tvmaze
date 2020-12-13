@@ -3,7 +3,7 @@ import {ShowService} from './show.service';
 import {Show} from '../../types';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-show',
@@ -23,7 +23,10 @@ export class ShowComponent implements OnInit {
   ngOnInit(): void {
     this.show$ = this.showService.show(this.data.id)
       .pipe(
-        map(({show}) => show)
+        take(1), // only interested in the first value
+        map(({show}) => {
+          return show;
+        })
       );
   }
 }

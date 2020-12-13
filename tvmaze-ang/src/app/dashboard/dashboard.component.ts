@@ -17,9 +17,6 @@ import {LoadingComponent} from '../shared/loading/loading.component';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   scheduleByGenres$: Observable<GenreSchedule[]> | undefined;
-  loading$ = new BehaviorSubject<boolean>(false);
-
-  loadingDialogRef: MatDialogRef<LoadingComponent> | undefined;
 
   genres!: string[];
 
@@ -55,6 +52,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ];
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  private loading$: Subject<boolean> = new Subject<boolean>();
+  private loadingDialogRef: MatDialogRef<LoadingComponent> | undefined;
+  private showDialogRef: MatDialogRef<ShowComponent> | undefined;
 
   constructor(
     private readonly dashboardService: DashboardService,
@@ -89,9 +89,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.error = '';
       }),
       switchMap((settings: Settings) => this.dashboardService.schedule(settings)),
-      catchError((data) => {
-        this.error = data;
+      catchError((error) => {
+        this.error = error;
         this.loading$.next(false);
+
         return of({schedule: []});
       }),
       map(({schedule}) => this.mapShowsByGenre(schedule)),
@@ -120,7 +121,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * @param id show-id
    */
   showDetails(id: string): void {
-    this.dialog.open(ShowComponent, {
+    this.showDialogRef = this.dialog.open(ShowComponent, {
       width: '70%',
       panelClass: 'show-dialog',
       data: {

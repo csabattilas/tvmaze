@@ -10,7 +10,7 @@ import {By} from '@angular/platform-browser';
 import {EMPTY} from 'rxjs';
 import {DebugElement} from '@angular/core';
 
-fdescribe('SearchComponent', () => {
+describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let searchService: SearchService;
@@ -68,7 +68,7 @@ fdescribe('SearchComponent', () => {
     }));
 
   it('should call config service when control value is changing and the value string in length is less than 3', fakeAsync(() => {
-    component.result$?.subscribe();
+    component.result$?.subscribe(); // manual subscribe
 
     spyOn(searchService, 'search').and.returnValue(EMPTY);
 

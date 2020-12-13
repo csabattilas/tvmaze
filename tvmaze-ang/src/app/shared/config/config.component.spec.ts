@@ -5,7 +5,7 @@ import {SharedModule} from '../shared.module';
 import {ConfigService} from './config.service';
 import {By} from '@angular/platform-browser';
 
-fdescribe('ConfigComponent', () => {
+describe('ConfigComponent', () => {
   let component: ConfigComponent;
   let fixture: ComponentFixture<ConfigComponent>;
   let configService: ConfigService;

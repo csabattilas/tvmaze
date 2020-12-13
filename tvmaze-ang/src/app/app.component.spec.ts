@@ -8,6 +8,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         SharedModule,
+        RouterTestingModule,
       ],
       declarations: [
         AppComponent

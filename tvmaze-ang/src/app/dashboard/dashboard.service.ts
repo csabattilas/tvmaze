@@ -15,7 +15,7 @@ export class DashboardService {
   schedule(settings: Settings): Observable<ScheduleQuery> {
     return this.apollo.watchQuery<ScheduleQuery>({
       query: gql`
-          query($settings: InputSettings!) {
+          query ScheduleQuery($settings: InputSettings!) {
             schedule(settings: $settings) {
               id
               name

@@ -15,7 +15,7 @@ export class ShowService {
   show(id: string): Observable<ShowQuery> {
     return this.apollo.watchQuery<ShowQuery>({
       query: gql`
-          query($id: ID!){
+          query showQuery($id: ID!){
             show(id: $id) {
               name
               summary
