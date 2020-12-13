@@ -1,6 +1,12 @@
 # TVmazing client application
 
-Small angular application consuming tvmaze api through the apollo-client
+Small angular application consuming tvmaze api through the apollo-client.
+
+## Install
+
+Run `npm i`.
+
+The used npm version is `6.13.4`.
 
 ## Development server
 

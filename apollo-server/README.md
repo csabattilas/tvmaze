@@ -2,6 +2,9 @@
 
 Small node application using apollo-serve to fetch from tvmazi api and forward data towards apollo client using graphql
 
+Nodejs version is `12`.
+
 ## Run
 
 Run `npm start` to start up the server
+
