@@ -8,17 +8,25 @@ class DateUtils {
      */
     static getDaysTillEndOfWeek() {
         const DAY_IN_MS = 24 * 60 * 60 * 1000;
-        const today = new Date();
-        const weekendDay = today.getDate() - (today.getDay() - 1) + 6;
-        const weekendDate = (new Date(today.setDate(weekendDay))).toISOString().slice(0, 10);
+        const today = DateUtils.today();
 
-        const startDate = new Date().toISOString().slice(0, 10);
+        const weekendDay = today.getDate() - (today.getDay() - 1) + 6;
+
+        const weekendDate = (new Date(new Date().setDate(weekendDay))).toISOString().slice(0, 10);
+
+        const startDate = DateUtils.today().toISOString().slice(0, 10);
+
         const diffInMs = new Date(weekendDate) - new Date(startDate);
+
         return diffInMs / DAY_IN_MS;
     }
 
     static addDay(date, day) {
         return new Date(date.getTime() + day * 24 * 60 * 60* 1000);
+    }
+
+    static today() {
+        return new Date();
     }
 }
 
