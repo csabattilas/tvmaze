@@ -14,15 +14,17 @@ Angular / Apollo / Graphql based web application using `TVmaze` to present TV sh
 * modals to present details about shows as summary, cast, or upcoming episodes information
 * dashboard also feature deep-linking with show details
 
-#### Possible upcoming features
+#### Future improvements
 
-* Deep-link dashboard based on the refine filters. Currently is always pointing to US on refresh 
 * Present former episodes
 * Add more countries to dashboard
 * Move apollo-server to typescript
-* Keep settings values even when on search. Possibly use session storage (?)
 * Better error handling with server communication failures
 * Address a11y issues
+
+### Open tasks
+
+Check [issue list](https://github.com/csabattilas/tvmaze/issues)
 
 ## Install
 
