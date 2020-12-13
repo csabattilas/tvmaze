@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DashboardService} from './dashboard.service';
 import {GenreSchedule, Settings, ShowPreview} from '../types';
 import {ShowComponent} from '../shared/show/show.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ConfigService} from '../shared/config/config.service';
-import {map, switchMap, tap} from 'rxjs/operators';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {catchError, map, switchMap, takeUntil, tap} from 'rxjs/operators';
+import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {LoadingComponent} from '../shared/loading/loading.component';
@@ -15,7 +15,7 @@ import {LoadingComponent} from '../shared/loading/loading.component';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   scheduleByGenres$: Observable<GenreSchedule[]> | undefined;
   loading$ = new BehaviorSubject<boolean>(false);
 
@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   week = 'current';
   country = 'United States';
   popularity = 'popular';
+  error = '';
 
   countries = [
     {
@@ -53,6 +54,8 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
+
   constructor(
     private readonly dashboardService: DashboardService,
     private readonly dialog: MatDialog,
@@ -60,6 +63,18 @@ export class DashboardComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly location: Location,
   ) {
+    this.loading$.pipe(
+      tap((state: boolean) => {
+        if (state) {
+          this.loadingDialogRef = this.dialog.open(LoadingComponent, {
+            width: '100%',
+          });
+        } else if (this.loadingDialogRef) {
+          this.loadingDialogRef.close();
+        }
+      }),
+      takeUntil(this.ngUnsubscribe),
+    ).subscribe();
   }
 
   ngOnInit(): void {
@@ -70,24 +85,21 @@ export class DashboardComponent implements OnInit {
       tap(({isNextWeek, countryCode, rating}) => {
         this.setConfigInfo(isNextWeek, countryCode, rating);
       }),
+      tap(() => {
+        this.error = '';
+      }),
       switchMap((settings: Settings) => this.dashboardService.schedule(settings)),
-      map(({schedule}) => this.matShowsByGenre(schedule)),
+      catchError((data) => {
+        this.error = data;
+        this.loading$.next(false);
+        return of({schedule: []});
+      }),
+      map(({schedule}) => this.mapShowsByGenre(schedule)),
       tap(() => {
         this.loading$.next(false);
-      })
+      }),
+      takeUntil(this.ngUnsubscribe),
     );
-
-    this.loading$.pipe(
-      tap((state: boolean) => {
-        if (state) {
-          this.loadingDialogRef = this.dialog.open(LoadingComponent, {
-            width: '100%',
-          });
-        } else if (this.loadingDialogRef) {
-          this.loadingDialogRef.close();
-        }
-      })
-    ).subscribe();
 
     // try to open details when id is in url
     const showIdFromRoute = this.route.snapshot.params.id;
@@ -95,6 +107,11 @@ export class DashboardComponent implements OnInit {
     if (showIdFromRoute) {
       this.showDetails(showIdFromRoute);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   /**
@@ -135,7 +152,7 @@ export class DashboardComponent implements OnInit {
    *
    * @param schedule holds ShowPreview typed Array.
    */
-  private matShowsByGenre(schedule: ShowPreview[]): GenreSchedule[] {
+  private mapShowsByGenre(schedule: ShowPreview[]): GenreSchedule[] {
     return schedule
       .reduce((acc: GenreSchedule[], item: ShowPreview) => {
         const genreFound = acc.find(accItem => accItem.genre === item.genre);

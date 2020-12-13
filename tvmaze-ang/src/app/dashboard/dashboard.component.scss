@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 :host {
   display: block;
   padding: 0 1rem;
@@ -24,4 +26,11 @@ h1 {
   span {
     text-transform: capitalize;
   }
+}
+
+.error {
+  color: mat-color(mat-palette($mat-red));
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem,
 }
