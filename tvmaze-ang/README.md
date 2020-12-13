@@ -1,7 +1,6 @@
 # TVmazing client application
 
-Small angular application consuming tvmaze api through the apollo-server
-
+Small angular application consuming tvmaze api through the apollo-client
 
 ## Development server
 
