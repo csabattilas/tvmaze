@@ -17,6 +17,9 @@ const routes: Routes = [
     path: 'search', component: SearchComponent
   },
   {
+    path: 'search/:id/:q', component: SearchComponent
+  },
+  {
     path: '**', redirectTo: 'dashboard', pathMatch: 'full'
   }
 ];

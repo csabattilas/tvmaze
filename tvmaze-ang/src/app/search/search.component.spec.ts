@@ -9,6 +9,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {By} from '@angular/platform-browser';
 import {EMPTY} from 'rxjs';
 import {DebugElement} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -20,7 +21,19 @@ describe('SearchComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
       imports: [MatDialogModule, SharedModule, ApolloTestingModule, NoopAnimationsModule],
-      providers: [SearchService],
+      providers: [
+        SearchService,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              params: {
+                id: '1'
+              }
+            }
+          }
+        }
+      ],
     })
       .compileComponents();
 
