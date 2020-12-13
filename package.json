@@ -7,7 +7,9 @@
     "start-client": "cd tvmaze-ang && npm start",
     "install-server": "cd apollo-server && npm i",
     "install-client": "cd tvmaze-ang && npm i",
-    "preinstall": "npm run install-server && npm run install-client"
+    "preinstall": "npm run install-server && npm run install-client",
+    "build-ang-prod": "cd tvmaze-ang && npm run build -- --prod",
+    "build": "npm run build-ang-prod"
   },
   "author": "csaba szabo",
   "license": "ISC"
