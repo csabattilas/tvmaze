@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardService} from './dashboard.service';
 import {GenreSchedule, Settings, ShowPreview} from '../types';
 import {ShowComponent} from '../shared/show/show.component';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ConfigService} from '../shared/config/config.service';
 import {map, switchMap, tap} from 'rxjs/operators';
 import {BehaviorSubject, Observable} from 'rxjs';
@@ -18,6 +18,8 @@ import {LoadingComponent} from '../shared/loading/loading.component';
 export class DashboardComponent implements OnInit {
   scheduleByGenres$: Observable<GenreSchedule[]> | undefined;
   loading$ = new BehaviorSubject<boolean>(false);
+
+  loadingDialogRef: MatDialogRef<LoadingComponent> | undefined;
 
   genres!: string[];
 
@@ -78,11 +80,11 @@ export class DashboardComponent implements OnInit {
     this.loading$.pipe(
       tap((state: boolean) => {
         if (state) {
-          this.dialog.open(LoadingComponent, {
+          this.loadingDialogRef = this.dialog.open(LoadingComponent, {
             width: '100%',
           });
-        } else {
-          this.dialog.closeAll();
+        } else if(this.loadingDialogRef) {
+          this.loadingDialogRef.close();
         }
       })
     ).subscribe();
