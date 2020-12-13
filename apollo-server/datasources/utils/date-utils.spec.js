@@ -1,5 +1,5 @@
 describe('Date utilities', () => {
-    let mockDate = new Date(1607855758401);
+    let mockDate = new Date(1607977802129);
     let DateUtils;
 
     beforeEach(() => {
@@ -11,6 +11,6 @@ describe('Date utilities', () => {
     });
 
     it('My Test Case', () => {
-        expect(DateUtils.getDaysTillEndOfWeek()).toEqual(7);
+        expect(DateUtils.getDaysTillEndOfWeek()).toEqual(6);
     });
 });

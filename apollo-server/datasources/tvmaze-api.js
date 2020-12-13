@@ -25,7 +25,7 @@ class TvMazeApi extends RESTDataSource {
 
         return Array.isArray(response)
             ? response.map(show => TvMazeApi.schedulerReducer(show))
-                .filter(show =>  show.rating >= rating)
+                .filter(show => show.rating >= rating)
             : [];
     }
 
@@ -47,12 +47,12 @@ class TvMazeApi extends RESTDataSource {
         let endDay = DateUtils.getDaysTillEndOfWeek();
 
         // current vs next week logic
-        if(isNextWeek) {
+        if (isNextWeek) {
             startDay = endDay;
             endDay = startDay + 7
         }
 
-        for(let day = startDay; day < endDay; day++) {
+        for (let day = startDay; day < endDay; day++) {
             dates.push(DateUtils.addDay(new Date(), day));
         }
 
@@ -63,6 +63,7 @@ class TvMazeApi extends RESTDataSource {
         response = Array.isArray(response)
             ? response.flat(1) : [];
 
+        // get shows only once;
         return response.length
             ? response.filter((show, index) => response.findIndex(showByIndex => showByIndex.id === show.id) === index)
             : [];
@@ -103,7 +104,7 @@ class TvMazeApi extends RESTDataSource {
 
     /**
      *
-     * Get upcoming episodes for a show. Will fetch all the episodes then I slice the first 2
+     * Get upcoming episodes for a show. Will fetch all the episodes the filter dates in the future, then I slice the first 2
      *
      * @param id
      * @returns {Promise<Array>}
@@ -166,10 +167,10 @@ class TvMazeApi extends RESTDataSource {
      * @returns {{name: *}|{name: string}}
      */
     static castReducer(cast) {
-        if(cast.person) {
-            return { name: cast.person.name };
+        if (cast.person) {
+            return {name: cast.person.name};
         } else {
-            return { name: ''};
+            return {name: ''};
         }
     }
 
@@ -179,10 +180,10 @@ class TvMazeApi extends RESTDataSource {
      * @returns {number|*}
      */
     static parseRating(rating) {
-        if(typeof rating !== "object") {
+        if (rating && typeof rating !== "object") {
             return rating;
-        } else if(rating.hasOwnProperty('average') && !!rating.average ) {
-           return rating.average;
+        } else if (rating && rating.hasOwnProperty('average') && !!rating.average) {
+            return rating.average;
         } else {
             return 0;
         }
