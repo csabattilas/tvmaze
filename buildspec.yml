@@ -12,6 +12,7 @@ phases:
       - pwd
       - ls -l
       - cd apollo-server && npm i
+      - cd ..
       - cd tvmaze-ang && npm i
   build:
     commands:
