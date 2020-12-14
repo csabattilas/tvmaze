@@ -5,11 +5,9 @@
   "scripts": {
     "start-server": "cd apollo-server && npm start",
     "start-client": "cd tvmaze-ang && npm start",
-    "install-server": "cd apollo-server && npm i && cd ..",
-    "install-client": "cd tvmaze-ang && npm i && cd ..",
-    "preinstall": "npm run install-server && npm run install-client",
-    "build-ang-prod": "cd tvmaze-ang && npm run build -- --prod",
-    "build": "npm run start-server& && npm run build-ang-prod"
+    "install-server": "cd apollo-server && npm i",
+    "install-client": "cd tvmaze-ang && npm i",
+    "preinstall": "npm run install-server && npm run install-client"
   },
   "author": "csaba szabo",
   "license": "ISC"
