@@ -9,7 +9,10 @@ phases:
   pre_build:
     # install dependencies
     commands:
-      - npm i
+      - pwd
+      - ls -l
+      - cd apollo-server && npm i
+      - cd tvmaze-ang && npm i
   build:
     commands:
       - npm run build
