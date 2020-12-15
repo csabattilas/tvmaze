@@ -12,6 +12,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import {SearchModule} from './search/search.module';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     DashboardService,
@@ -34,7 +35,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'http://localhost:4000/graphql',
+            uri: environment.graphqlUri
           }),
         };
       },
