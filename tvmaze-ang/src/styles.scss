@@ -13,9 +13,18 @@ $theme: (
 );
 
 html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
   font-family: Inter;
   background-color: #222;
-  color: white
+  color: white;
+
+  @media only screen and (max-width: 560px) {
+    font-size: 14px;
+  }
 }
 
 .show-dialog {

@@ -3,7 +3,6 @@
 :host {
   display: block;
   padding: 0 1rem;
-  margin-top: 5rem;
 }
 
 ul {
@@ -16,10 +15,12 @@ ul {
   width: 100%;
   overflow: auto;
   padding: 0.5rem 0;
+  scroll-snap-type: x mandatory;
 }
 
 .shows-scroller__item {
   width: 230px;
+  scroll-snap-align: start;
 }
 
 h1 {

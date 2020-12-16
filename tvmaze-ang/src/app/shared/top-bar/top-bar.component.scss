@@ -1,11 +1,35 @@
 @import '~@angular/material/theming';
 
+:host {
+  display: block;
+  height: 4rem;
+}
+
+div {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
 a {
   color: white;
   padding: 0 0.5rem;
 
   mat-icon {
     padding: 0;
+
+    &.mat-icon-home {
+      margin-top: 3px;
+    }
+
+    &.mat-icon-search {
+      margin-top: 5px;
+    }
   };
 
   &.active {
@@ -26,7 +50,7 @@ div {
   justify-content: space-between;
   box-sizing: border-box;
   background-color: #333;
-  box-shadow: 1px 0 0 #444;
+  box-shadow: 0 1px 2px 0 #000;
   top: 0;
   z-index: 2;
   left: 0;
